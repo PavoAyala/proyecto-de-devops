@@ -14,8 +14,8 @@ const Hero: React.FC = () => {
                         Innovative digital booking for rooms, restaurant tables, and exclusive events. Fast, secure, and designed for your comfort.
                     </p>
                     <div className={styles.actions}>
-                        <Button variant="primary" className={styles.cta}>Explore Rooms</Button>
-                        <Button variant="secondary" className={styles.cta}>View Restaurant</Button>
+                        <Button variant="primary" className={styles.cta} href="#rooms">Explore Rooms</Button>
+                        <Button variant="secondary" className={styles.cta} href="#restaurant">View Restaurant</Button>
                     </div>
                 </div>
             </div>
