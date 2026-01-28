@@ -33,9 +33,9 @@ const Services: React.FC = () => {
                     <p className={styles.headerSubtitle}>Everything you need for an unforgettable experience at Nexus Hotel.</p>
                 </div>
                 <div className={styles.grid}>
-                    {services.map((service, index) => (
+                    {services.map((service) => (
                         <Card
-                            key={index}
+                            key={service.title}
                             title={service.title}
                             description={service.description}
                             image={service.image}
