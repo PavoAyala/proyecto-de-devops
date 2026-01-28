@@ -18,10 +18,10 @@ const Footer: React.FC = () => {
                     <div className={styles.links}>
                         <h4 className={styles.title}>Quick Links</h4>
                         <ul className={styles.linkList}>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#security">Security</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/services">Services</a></li>
+                            <li><a href="/security">Security</a></li>
+                            <li><a href="/contact">Contact</a></li>
                         </ul>
                     </div>
                     <div className={styles.contact}>
