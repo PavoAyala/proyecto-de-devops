@@ -22,7 +22,13 @@ const Card: React.FC<CardProps> = ({
         <div className={`glass ${styles.card} ${className}`}>
             {image && (
                 <div className={styles.imageWrapper}>
-                    <img src={image} alt={title} className={styles.image} />
+                    <img
+                        src={image}
+                        alt={title}
+                        className={styles.image}
+                        loading="lazy"
+                        decoding="async"
+                    />
                 </div>
             )}
             <div className={styles.content}>
