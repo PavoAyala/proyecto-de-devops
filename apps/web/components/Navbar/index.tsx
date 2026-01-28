@@ -11,9 +11,9 @@ const Navbar: React.FC = () => {
                     <span className={styles.hotel}>HOTEL</span>
                 </div>
                 <ul className={styles.navLinks}>
-                    <li><a href="#rooms" className={styles.link}>Rooms</a></li>
-                    <li><a href="#restaurant" className={styles.link}>Restaurant</a></li>
-                    <li><a href="#events" className={styles.link}>Events</a></li>
+                    <li><a id="rooms" href="#rooms" className={styles.link}>Rooms</a></li>
+                    <li><a id="restaurant" href="#restaurant" className={styles.link}>Restaurant</a></li>
+                    <li><a id="events" href="#events" className={styles.link}>Events</a></li>
                 </ul>
                 <div className={styles.actions}>
                     <Button variant="outline">Book Now</Button>
