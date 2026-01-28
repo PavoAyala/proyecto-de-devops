@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
                     <li><a href="#events" className={styles.link}>Events</a></li>
                 </ul>
                 <div className={styles.actions}>
-                    <Button variant="outline" className={styles.bookBtn}>Book Now</Button>
+                    <Button variant="outline">Book Now</Button>
                 </div>
             </div>
         </nav>
