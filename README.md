@@ -144,6 +144,3 @@ Este proyecto se desarrolla bajo un enfoque de **código abierto**, fomentando l
 ## Plantilla
 
 <img width="1482" height="818" alt="image" src="https://github.com/user-attachments/assets/86e05957-f844-4967-9b66-0371cec5e7f8" />
-
-
-
