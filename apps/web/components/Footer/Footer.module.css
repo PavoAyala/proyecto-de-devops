@@ -1,0 +1,102 @@
+.footer {
+    background-color: var(--secondary);
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.nexus {
+    color: var(--text-primary);
+}
+
+.hotel {
+    color: var(--accent);
+}
+
+.description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+.title {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.linkList {
+    list-style: none;
+}
+
+.linkList li {
+    margin-bottom: 0.8rem;
+}
+
+.linkList li a {
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.linkList li a:hover {
+    color: var(--accent);
+}
+
+.contactInfo p {
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+
+.bottom {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.legal {
+    display: flex;
+}
+
+.legal a {
+    margin-left: 1.5rem;
+    transition: var(--transition);
+}
+
+.legal a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .legal a {
+        margin: 0 0.75rem;
+    }
+}
