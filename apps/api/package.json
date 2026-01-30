@@ -6,7 +6,6 @@
     "dev": "srvx"
   },
   "dependencies": {
-    "hono": "^4.9.6",
     "@repo/constants": "workspace:*"
   },
   "devDependencies": {
