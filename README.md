@@ -1,127 +1,149 @@
-# Turborepo + Hono starter
+# 🏨 Nexus Hotel – Fase 1
+
+> Plataforma digital de reservaciones con enfoque en **seguridad**, **disponibilidad** y **DevOps**
+
+---
+
+## 📌 Descripción General
+
+Este proyecto tiene como enfoque proporcionar a clientes actuales y nuevos de **Nexus Hotel** una forma **rápida, segura y confiable** de reservar dentro de las instalaciones del hotel, eliminando la dependencia del método tradicional de llamadas a recepción.
+
+Las instalaciones contempladas incluyen:
+
+* 🛏️ Habitaciones
+* 🍽️ Mesas en los distintos restaurantes del hotel
+* 🏢 Espacios para eventos y reuniones
+
+La plataforma manejará **información personal**, **datos de contacto**, **preferencias de hospedaje** y **datos bancarios**, por lo que se vuelve indispensable garantizar **altos niveles de seguridad, disponibilidad y confiabilidad**.
+
+---
+
+## 🔗 Gestión del Proyecto
+
+* **Jira:**
+  [https://hoteldevops.atlassian.net/jira/core/projects/NXS/calendar](https://hoteldevops.atlassian.net/jira/core/projects/NXS/calendar)
+
+---
+
+## 🔐 Justificación: Código Abierto + Metodología DevOps
+
+Proteger la información de los clientes es una prioridad crítica. Desde el punto de vista de un **empresario**, **político** o incluso un **cliente común**, surge una pregunta clave:
+
+> ¿Es seguro que cualquiera con conocimientos básicos de TI pueda acceder al nombre, fecha y hora de una reservación?
+
+Asimismo, un cliente que desea celebrar un evento especial necesita sentirse seguro al compartir **sus datos bancarios**, confiando en que el hotel cuenta con medidas mínimas y avanzadas de **ciberseguridad**.
+
+La metodología **DevOps** permite asegurar un **ciclo de mejora continua**, reforzando tanto la **seguridad** como la **estabilidad** del sistema.
+
+### Beneficios Clave de DevOps
+
+* **🛡️ Seguridad Continua**
+  Integración de pruebas automatizadas y análisis de vulnerabilidades dentro del ciclo de desarrollo para detectar y corregir fallos antes de que impacten a los clientes.
+
+* **⚙️ Alta Disponibilidad del Servicio**
+  Actualizaciones rápidas y controladas sin interrupciones, asegurando que el sistema de reservas esté siempre en línea.
+
+* **🤝 Colaboración en Código Abierto**
+  Estandarización de procesos mediante control de versiones, integración continua y repositorios compartidos, asegurando calidad y evitando conflictos.
+
+* **📈 Escalabilidad y Rendimiento**
+  Capacidad de monitorear el sistema en tiempo real y escalar recursos automáticamente en temporadas de alta demanda.
+
+---
+
+## 💼 Plan de Negocios
+
+### 2.1 Resumen Ejecutivo
+
+Nexus Hotel busca implementar una herramienta digital innovadora que sustituya el proceso tradicional de reservaciones por llamada telefónica. La solución permitirá a clientes existentes y nuevos realizar reservaciones de forma **rápida, segura y confiable**, garantizando la protección de su información personal y bancaria.
+
+---
+
+### 2.2 Problema
+
+El método actual de reservación vía recepción es:
+
+* ❌ Ineficiente
+* ❌ Lento
+* ❌ Vulnerable a riesgos de ciberseguridad
+
+Esto compromete datos personales, preferencias de hospedaje y datos bancarios, generando **desconfianza** tanto en clientes de alto perfil como en el cliente promedio.
+
+---
+
+### 2.3 Solución
+
+Se desarrollará una **herramienta de reservaciones en línea** basada en la metodología **DevOps**, garantizando:
+
+#### Propuesta de Valor
+
+* **🔒 Seguridad y Confiabilidad**
+  Protección robusta de la información personal y bancaria del cliente.
+
+* **⚡ Eficiencia**
+  Proceso de reservación completamente digital y ágil.
+
+* **🌐 Disponibilidad**
+  Acceso al sistema en cualquier momento y desde cualquier lugar.
+
+---
+
+### 2.4 Mercado Objetivo
+
+* **Clientes Actuales de Nexus Hotel**
+  Huéspedes frecuentes que buscan una experiencia moderna y segura.
+
+* **Nuevos Clientes**
+  Usuarios atraídos por una plataforma que prioriza la seguridad, disponibilidad y facilidad de uso.
+
+---
+
+### 2.5 Requerimientos Estratégicos
+
+Para el éxito del proyecto es indispensable garantizar:
+
+* 🔐 **Altos niveles de Seguridad**
+* ⏱️ **Alta Disponibilidad del Servicio**
+* ✅ **Confiabilidad en el manejo de datos y transacciones**
+
+---
+
+### 2.6 Requerimientos Técnicos
+
+| Tecnología          | Función                                          |
+| ------------------- | ------------------------------------------------ |
+| **React (Next.js)** | Desarrollo de la aplicación web de reservaciones |
+| **Supabase**        | Base de datos y autenticación de usuarios        |
+| **Docker**          | Contenerización para entornos consistentes       |
+| **Vercel**          | Despliegue continuo y automatizado               |
+| **Grafana**         | Monitoreo del rendimiento y estado del sistema   |
+
+---
+
+## 🚀 Estado del Proyecto
+
+📍 **Fase 1 – Planeación y Diseño DevOps**
+
+---
+
+## 📄 Licencia
+
+Este proyecto se desarrolla bajo un enfoque de **código abierto**, fomentando la colaboración y la mejora continua.
+
+## 📊 Tablero Kanban (Jira)
+
+<img width="1482" height="950" alt="image" src="https://github.com/user-attachments/assets/a4d6b398-9354-4edf-89a9-7b06cde2814c" />
 
 
-## What's inside?
+<img width="1482" height="800" alt="image" src="https://github.com/user-attachments/assets/234df0ac-cc8c-46df-9692-599789d18666" />
 
-This Turborepo includes the following packages/apps:
+## Base de datos (SupaBase)
 
-### Apps and Packages
+<img width="1482" height="857" alt="image" src="https://github.com/user-attachments/assets/9872e972-8f9e-4e9c-b81f-df996578af7e" />
 
-- `api`: a [Hono](https://hono.dev/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Plantilla
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+<img width="1482" height="818" alt="image" src="https://github.com/user-attachments/assets/86e05957-f844-4967-9b66-0371cec5e7f8" />
 
-### Utilities
 
-This Turborepo has some additional tools already setup for you:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following commands:
-
-```
-cd my-turborepo
-vc link --repo # Connect your repository to Vercel
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
