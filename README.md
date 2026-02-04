@@ -9,7 +9,6 @@
 Este proyecto tiene como enfoque proporcionar a clientes actuales y nuevos de **Nexus Hotel** una forma **rápida, segura y confiable** de reservar dentro de las instalaciones del hotel, eliminando la dependencia del método tradicional de llamadas a recepción.
 
 Las instalaciones contempladas incluyen:
-
 * 🛏️ Habitaciones
 * 🍽️ Mesas en los distintos restaurantes del hotel
 * 🏢 Espacios para eventos y reuniones
@@ -25,15 +24,15 @@ La plataforma manejará **información personal**, **datos de contacto**, **pref
 
 ---
 
-## 🔐 Justificación: Código Abierto + Metodología DevOps
+## 🔐 Justificación de la Metodología DevOps y Código Abierto
 
-Proteger la información de los clientes es una prioridad crítica. Desde el punto de vista de un **empresario**, **político** o incluso un **cliente común**, surge una pregunta clave:
+Proteger la información de los clientes es una prioridad crítica. Desde el punto de vista de un empresario, político o incluso un cliente común, surge una pregunta clave:
 
-> ¿Es seguro que cualquiera con conocimientos básicos de TI pueda acceder al nombre, fecha y hora de una reservación?
+> ¿Es seguro que cualquiera con conocimientos básicos de TI pueda acceder a los datos personales, fecha y hora de una reservación?
 
 Asimismo, un cliente que desea celebrar un evento especial necesita sentirse seguro al compartir **sus datos bancarios**, confiando en que el hotel cuenta con medidas mínimas y avanzadas de **ciberseguridad**.
 
-La metodología **DevOps** permite asegurar un **ciclo de mejora continua**, reforzando tanto la **seguridad** como la **estabilidad** del sistema.
+La metodología **DevOps** permite asegurar un ciclo de mejora continua, reforzando tanto la **seguridad** como la **estabilidad** del sistema.
 
 ### Beneficios Clave de DevOps
 
@@ -53,13 +52,13 @@ La metodología **DevOps** permite asegurar un **ciclo de mejora continua**, ref
 
 ## 💼 Plan de Negocios
 
-### 2.1 Resumen Ejecutivo
+### Resumen Ejecutivo
 
 Nexus Hotel busca implementar una herramienta digital innovadora que sustituya el proceso tradicional de reservaciones por llamada telefónica. La solución permitirá a clientes existentes y nuevos realizar reservaciones de forma **rápida, segura y confiable**, garantizando la protección de su información personal y bancaria.
 
 ---
 
-### 2.2 Problema
+### Problema
 
 El método actual de reservación vía recepción es:
 
@@ -71,11 +70,9 @@ Esto compromete datos personales, preferencias de hospedaje y datos bancarios, g
 
 ---
 
-### 2.3 Solución
+### Solución
 
-Se desarrollará una **herramienta de reservaciones en línea** basada en la metodología **DevOps**, garantizando:
-
-#### Propuesta de Valor
+La **Propuesta de Valor** será desarrollará una **herramienta de reservaciones en línea** basada en la metodología **DevOps**, garantizando:
 
 * **🔒 Seguridad y Confiabilidad**
   Protección robusta de la información personal y bancaria del cliente.
@@ -88,7 +85,7 @@ Se desarrollará una **herramienta de reservaciones en línea** basada en la met
 
 ---
 
-### 2.4 Mercado Objetivo
+### Mercado Objetivo
 
 * **Clientes Actuales de Nexus Hotel**
   Huéspedes frecuentes que buscan una experiencia moderna y segura.
@@ -98,7 +95,7 @@ Se desarrollará una **herramienta de reservaciones en línea** basada en la met
 
 ---
 
-### 2.5 Requerimientos Estratégicos
+### Requerimientos Estratégicos
 
 Para el éxito del proyecto es indispensable garantizar:
 
@@ -108,15 +105,17 @@ Para el éxito del proyecto es indispensable garantizar:
 
 ---
 
-### 2.6 Requerimientos Técnicos
+## Requerimientos Técnicos
 
-| Tecnología          | Función                                          |
-| ------------------- | ------------------------------------------------ |
-| **React (Next.js)** | Desarrollo de la aplicación web de reservaciones |
-| **Supabase**        | Base de datos y autenticación de usuarios        |
-| **Docker**          | Contenerización para entornos consistentes       |
-| **Vercel**          | Despliegue continuo y automatizado               |
-| **Grafana**         | Monitoreo del rendimiento y estado del sistema   |
+| Tecnología          | Función                                                           |
+| ------------------- | ----------------------------------------------------------------- |
+| **React (Next.js)** | Desarrollo de la aplicación web de reservaciones                  |
+| **Vercel**          | Despliegue continuo y automatizado                                |
+| **Supabase**        | Base de datos y autenticación de usuarios                         |
+| **Terraform**       | Infraestructura como código para automatizar la provisión de entornos |
+| **Docker**          | Contenerización para entornos consistentes                        |
+| **Grafana**         | Monitoreo del rendimiento y estado del sistema                    |
+
 
 ---
 
