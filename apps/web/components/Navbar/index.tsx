@@ -17,6 +17,7 @@ const Navbar: React.FC = () => {
                 </ul>
                 <div className={styles.actions}>
                     <Button variant="outline">Book Now</Button>
+                    <Button variant="outline">Sign In</Button>
                 </div>
             </div>
         </nav>
