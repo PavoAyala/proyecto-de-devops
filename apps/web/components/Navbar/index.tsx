@@ -1,18 +1,43 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { User } from '@supabase/supabase-js';
 import styles from './Navbar.module.css';
 import Button from '../Button';
 import AuthModal from '../AuthModal';
+import { createSupabaseClient } from '../../utils/supabase/client';
 
 const Navbar: React.FC = () => {
-    const router = useRouter();
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-    const handleBookNow = () => {
-        router.push('/habitaciones');
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const supabase = createSupabaseClient();
+    const [user, setUser] = useState<User | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        const checkUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            setUser(user);
+        };
+
+        checkUser();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, []);
+
+    const handleSignOut = async () => {
+        await supabase.auth.signOut();
+        router.refresh(); // Opcional: recargar para limpiar estados
     };
+
+
 
     return (
         <>
@@ -28,8 +53,15 @@ const Navbar: React.FC = () => {
                         <li><a id="events" href="#events" className={styles.link}>Events</a></li>
                     </ul>
                     <div className={styles.actions}>
-                        <Button variant="outline" onClick={handleBookNow}>Book Now</Button>
-                        <Button variant="outline" onClick={() => setIsAuthModalOpen(true)}>Sign In</Button>
+                        <Button variant="outline" href="/habitaciones">Book Now</Button>
+                        {user ? (
+                            <div className={styles.userMenu}>
+                                <span className={styles.userEmail}>{user.email}</span>
+                                <Button variant="secondary" onClick={handleSignOut}>Sign Out</Button>
+                            </div>
+                        ) : (
+                            <Button variant="outline" onClick={() => setIsAuthModalOpen(true)}>Sign In</Button>
+                        )}
                     </div>
                 </div>
             </nav>
