@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Hero.module.css';
 import Button from '../Button';
+import BookingSearch from '../BookingSearch';
 
 const Hero: React.FC = () => {
     return (
@@ -17,6 +18,8 @@ const Hero: React.FC = () => {
                         <Button variant="primary" className={styles.cta} href="habitaciones">Explore Rooms</Button>
                         <Button variant="secondary" className={styles.cta} href="#restaurant">View Restaurant</Button>
                     </div>
+
+                    <BookingSearch variant="hero" />
                 </div>
             </div>
             <div className={styles.overlay}></div>

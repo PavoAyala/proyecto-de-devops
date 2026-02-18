@@ -1,12 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './Navbar.module.css';
 import Button from '../Button';
 import AuthModal from '../AuthModal';
 
 const Navbar: React.FC = () => {
+    const router = useRouter();
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+    const handleBookNow = () => {
+        router.push('/habitaciones');
+    };
 
     return (
         <>
@@ -22,7 +28,7 @@ const Navbar: React.FC = () => {
                         <li><a id="events" href="#events" className={styles.link}>Events</a></li>
                     </ul>
                     <div className={styles.actions}>
-                        <Button variant="outline">Book Now</Button>
+                        <Button variant="outline" onClick={handleBookNow}>Book Now</Button>
                         <Button variant="outline" onClick={() => setIsAuthModalOpen(true)}>Sign In</Button>
                     </div>
                 </div>

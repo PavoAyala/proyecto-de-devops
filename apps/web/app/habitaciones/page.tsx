@@ -1,10 +1,8 @@
-
 import { createSupabaseClient } from '../../utils/supabase/client';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import Card from '../../components/Card';
 import styles from './page.module.css';
-import Button from '../../components/Button';
+import RoomCard from './RoomCard';
 
 interface Room {
     id: string;
@@ -15,14 +13,29 @@ interface Room {
     capacidad: number;
 }
 
-export const revalidate = 0; // Disable caching to fetch fresh data
+export const revalidate = 0;
 
-export default async function RoomsPage() {
+interface PageProps {
+    searchParams: Promise<{
+        checkIn?: string;
+        checkOut?: string;
+        guests?: string;
+    }>;
+}
+
+export default async function RoomsPage({ searchParams }: PageProps) {
+    const params = await searchParams;
+    const { checkIn, checkOut, guests } = params;
+
     const supabase = createSupabaseClient();
-    const { data: rooms, error } = await supabase
-        .from('tipos_habitacion')
-        .select('*')
-        .returns<Room[]>();
+
+    let query = supabase.from('tipos_habitacion').select('*');
+
+    if (guests) {
+        query = query.gte('capacidad', parseInt(guests));
+    }
+
+    const { data: rooms, error } = await query.returns<Room[]>();
 
     if (error) {
         console.error('Error fetching rooms:', error);
@@ -43,23 +56,27 @@ export default async function RoomsPage() {
             <Navbar />
             <main className={`${styles.pageContainer} container`}>
                 <h1 className={styles.heading}>Our Rooms</h1>
+
+                {checkIn && checkOut && (
+                    <div className={styles.searchInfo}>
+                        <p>
+                            Mostrando habitaciones disponibles del{' '}
+                            <strong>{new Date(checkIn).toLocaleDateString('es-ES')}</strong> al{' '}
+                            <strong>{new Date(checkOut).toLocaleDateString('es-ES')}</strong>
+                            {guests && <> para <strong>{guests} huespedes</strong></>}
+                        </p>
+                    </div>
+                )}
+
                 <div className={styles.grid}>
                     {rooms?.map((room) => (
-                        <Card
+                        <RoomCard
                             key={room.id}
-                            title={room.nombre}
-                            description={room.descripcion}
-                            image={room.img_url || '/placeholder-room.jpg'}
-                            className={styles.cardContent}
-                        >
-                            <div className={styles.price}>${room.precio_base} / night</div>
-                            <div className={styles.details}>
-                                <span>Capacity: {room.capacidad} persons</span>
-                            </div>
-                            <Button variant="primary" className={styles.bookButton}>
-                                Book Now
-                            </Button>
-                        </Card>
+                            room={room}
+                            checkIn={checkIn}
+                            checkOut={checkOut}
+                            guests={guests}
+                        />
                     ))}
                 </div>
             </main>
