@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.git
+.env*.local
+.next
+dist
+build
+.nyc_output
+coverage
+.cache
+.DS_Store
