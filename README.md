@@ -1,6 +1,6 @@
 # 🏨 Nexus Hotel – Fase 1
 
-> Plataforma digital de reservaciones con enfoque en **seguridad**, **disponibilidad** y **DevOps**
+> Plataforma digital de reservaciones con enfoque en **Seguridad**, **Disponibilidad** y **DevOps**
 
 ---
 
@@ -143,3 +143,71 @@ Este proyecto se desarrolla bajo un enfoque de **código abierto**, fomentando l
 ## Plantilla
 
 <img width="1482" height="818" alt="image" src="https://github.com/user-attachments/assets/86e05957-f844-4967-9b66-0371cec5e7f8" />
+
+
+📍 **Fase 2 – Infraestructura utilizando Terraform**
+
+---
+
+# CI - Construcción de las imágenes de Docker
+## Docker Setup
+
+Este proyecto está configurado con dos entornos Docker distintos para adaptarse a diferentes necesidades:
+
+### 1. Entorno de Desarrollo (Web App)
+Diseñado para el desarrollo local con capacidades de recarga en caliente (hot-reloading). Ejecuta la aplicación frontend de Next.js.
+
+**Objetivo:** Programar rápido ⚡
+- **Archivo:** `Dockerfile.dev`
+- **Puerto:** `3001`
+- **Características:**
+  - **Hot-Reload:** Los cambios en el código se reflejan al instante sin reiniciar.
+  - **Completo:** Incluye herramientas de desarrollo y depuración.
+  - **Uso:** Solo para local mientras se programa.
+
+- **Comando**:
+    ```bash
+    # Construir la imagen de desarrollo
+    docker build -f Dockerfile.dev -t nexushotel .
+    
+    # Ejecutar el contenedor (con variables de entorno desde .env)
+    docker run -p 3001:3001 --env-file .env --name nexusdev nexushotel
+    ```
+    Explicación de los argumentos:
+    - `-p 3001:3001`: Mapea el puerto 3001 de tu máquina al puerto 3001 del contenedor.
+    - `--env-file .env`: Carga las variables de entorno desde tu archivo `.env` local.
+
+### 2. Entorno de Producción (Web App)
+Diseñado para rendimiento y seguridad. Utiliza un proceso de construcción de múltiples etapas para crear una imagen ligera y optimizada para la aplicación web.
+
+**Objetivo:** Estabilidad y rendimiento 🚀
+- **Archivo:** `Dockerfile`
+- **Puerto:** `3000`
+- **Características:**
+  - **Optimizado:** Elimina código fuente y herramientas innecesarias.
+  - **Ligero:** La imagen pesa mucho menos y carga más rápido.
+  - **Seguro:** No expone tu código ni configuraciones de desarrollo.
+  - **Uso:** Para desplegar en servidores reales o Internet.
+
+Tienes dos opciones para ejecutarlo:
+
+#### Opción A: Usar imagen pre-construida de Docker Hub (Recomendado)
+Descarga la versión lista para usar directamente de la nube sin tener que construir nada.
+-   **Imagen**: `ssubaru/nexushotel:latest`
+-   **Comando**:
+    ```bash
+    docker run -p 3000:3000 --env-file .env --name nexusweb ssubaru/nexushotel:latest
+    ```
+
+#### Opción B: Construir localmente
+Usar el `Dockerfile` para construir la imagen en la máquina local.
+-   **Comando**:
+    ```bash
+    # Construir e iniciar el servicio en modo desconectado (detached)
+    docker compose up --build -d
+    ```.
+    Esto hará lo siguiente:
+    - Podará el monorepo para aislar la aplicación web.
+    - Instalará las dependencias de producción.
+    - Compilará el proyecto Next.js.
+    - Iniciará el servidor utilizando una imagen ligera `node:22-slim`.
