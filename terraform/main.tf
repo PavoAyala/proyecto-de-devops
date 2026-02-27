@@ -10,18 +10,25 @@ resource "vercel_project" "web" {
 
   root_directory = "apps/web"
 
-  environment = [
-    {
-      key    = "NEXT_PUBLIC_SUPABASE_URL"
-      value  = var.supabase_url
-      target = ["production", "preview", "development"]
-    },
-    {
-      key    = "NEXT_PUBLIC_SUPABASE_ANON_KEY"
-      value  = var.supabase_anon_key
-      target = ["production", "preview", "development"]
-    }
-  ]
+  # Manual configuration overrides
+  install_command = "pnpm install --prefix=../.."
+  build_command   = "npx turbo run build --filter=web"
+}
+
+resource "vercel_project_environment_variable" "web_url" {
+  project_id = vercel_project.web.id
+  team_id    = var.vercel_team_id
+  key        = "NEXT_PUBLIC_SUPABASE_URL"
+  value      = var.supabase_url
+  target     = ["production", "preview", "development"]
+}
+
+resource "vercel_project_environment_variable" "web_key" {
+  project_id = vercel_project.web.id
+  team_id    = var.vercel_team_id
+  key        = "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  value      = var.supabase_anon_key
+  target     = ["production", "preview", "development"]
 }
 
 resource "vercel_project" "api" {
@@ -35,20 +42,24 @@ resource "vercel_project" "api" {
 
   root_directory = "apps/api"
 
-  # Ensure the build command matches your package.json
+  # Manual configuration overrides
+  install_command  = "pnpm install --prefix=../.."
   build_command    = "cd ../.. && npx turbo run build --filter=api"
-  output_directory = "dist" # Assuming 'tsc' outputs here, adjust if needed
+  output_directory = "dist"
+}
 
-  environment = [
-    {
-      key    = "NEXT_PUBLIC_SUPABASE_URL"
-      value  = var.supabase_url
-      target = ["production", "preview", "development"]
-    },
-    {
-      key    = "NEXT_PUBLIC_SUPABASE_ANON_KEY"
-      value  = var.supabase_anon_key
-      target = ["production", "preview", "development"]
-    }
-  ]
+resource "vercel_project_environment_variable" "api_url" {
+  project_id = vercel_project.api.id
+  team_id    = var.vercel_team_id
+  key        = "NEXT_PUBLIC_SUPABASE_URL"
+  value      = var.supabase_url
+  target     = ["production", "preview", "development"]
+}
+
+resource "vercel_project_environment_variable" "api_key" {
+  project_id = vercel_project.api.id
+  team_id    = var.vercel_team_id
+  key        = "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  value      = var.supabase_anon_key
+  target     = ["production", "preview", "development"]
 }
