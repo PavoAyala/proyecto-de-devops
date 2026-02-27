@@ -14,3 +14,14 @@ variable "github_repo" {
   type        = string
   default     = "PavoAyala/proyecto-de-devops"
 }
+
+variable "supabase_url" {
+  description = "The Supabase URL"
+  type        = string
+}
+
+variable "supabase_anon_key" {
+  description = "The Supabase Anon Key"
+  type        = string
+  sensitive   = true
+}
