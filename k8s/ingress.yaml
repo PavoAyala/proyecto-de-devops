@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nexushotel-ingress
+  namespace: nexushotel
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    # Add other annotations as needed, e.g., for TLS cert-manager
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: nexushotel.local # Change to your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nexushotel-web-svc
+                port:
+                  number: 80

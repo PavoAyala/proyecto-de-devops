@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexushotel-web
+  namespace: nexushotel
+  labels:
+    app: nexushotel-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nexushotel-web
+  template:
+    metadata:
+      labels:
+        app: nexushotel-web
+    spec:
+      containers:
+        - name: web
+          image: nexushotel-web:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

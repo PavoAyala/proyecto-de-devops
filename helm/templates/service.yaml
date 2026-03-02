@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nexushotel.fullname" . }}-svc
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "nexushotel.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      name: http
+  selector:
+    {{- include "nexushotel.selectorLabels" . | nindent 4 }}
