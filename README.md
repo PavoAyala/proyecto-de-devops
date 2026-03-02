@@ -129,122 +129,177 @@ Para el éxito del proyecto es indispensable garantizar:
 
 Este proyecto se desarrolla bajo un enfoque de **código abierto**, fomentando la colaboración y la mejora continua.
 
-## 📊 Tablero Kanban (Jira)
+## Evidencias Fase 1
+
+### 📊 Tablero Kanban (Jira)
 
 <img width="1482" height="950" alt="image" src="https://github.com/user-attachments/assets/a4d6b398-9354-4edf-89a9-7b06cde2814c" />
 
 
 <img width="1482" height="800" alt="image" src="https://github.com/user-attachments/assets/234df0ac-cc8c-46df-9692-599789d18666" />
 
-## Base de datos (SupaBase)
+### Base de datos (SupaBase)
 
 <img width="1482" height="857" alt="image" src="https://github.com/user-attachments/assets/9872e972-8f9e-4e9c-b81f-df996578af7e" />
 
-## Plantilla
+### Plantilla
 
 <img width="1482" height="818" alt="image" src="https://github.com/user-attachments/assets/86e05957-f844-4967-9b66-0371cec5e7f8" />
 
 
-📍 **Fase 2 – Infraestructura utilizando Terraform**
+# 📍 Fase 2 – Infraestructura utilizando Terraform
 
 ---
 
-# CI - Construcción de las imágenes de Docker
-## Docker Setup
+# 🐳 CI - Construcción de las Imágenes Docker
 
-Este proyecto está configurado con dos entornos Docker distintos para adaptarse a diferentes necesidades:
+## ⚙️ Docker Setup
 
-### 1. Entorno de Desarrollo (Web App)
-Diseñado para el desarrollo local con capacidades de recarga en caliente (hot-reloading). Ejecuta la aplicación frontend de Next.js.
-
-**Objetivo:** Programar rápido ⚡
-- **Archivo:** `Dockerfile.dev`
-- **Puerto:** `3001`
-- **Características:**
-  - **Hot-Reload:** Los cambios en el código se reflejan al instante sin reiniciar.
-  - **Completo:** Incluye herramientas de desarrollo y depuración.
-  - **Uso:** Solo para local mientras se programa.
-
-- **Comando**:
-    ```bash
-    # Construir la imagen de desarrollo
-    docker build -f Dockerfile.dev -t nexushotel .
-    
-    # Ejecutar el contenedor (con variables de entorno desde .env)
-    docker run -p 3001:3001 --env-file .env --name nexusdev nexushotel
-    ```
-    Explicación de los argumentos:
-    - `-p 3001:3001`: Mapea el puerto 3001 de tu máquina al puerto 3001 del contenedor.
-    - `--env-file .env`: Carga las variables de entorno desde tu archivo `.env` local.
-
-### 2. Entorno de Producción (Web App)
-Diseñado para rendimiento y seguridad. Utiliza un proceso de construcción de múltiples etapas para crear una imagen ligera y optimizada para la aplicación web.
-
-**Objetivo:** Estabilidad y rendimiento 🚀
-- **Archivo:** `Dockerfile`
-- **Puerto:** `3000`
-- **Características:**
-  - **Optimizado:** Elimina código fuente y herramientas innecesarias.
-  - **Ligero:** La imagen pesa mucho menos y carga más rápido.
-  - **Seguro:** No expone tu código ni configuraciones de desarrollo.
-  - **Uso:** Para desplegar en servidores reales o Internet.
-
-Tienes dos opciones para ejecutarlo:
-
-#### Opción A: Usar imagen pre-construida de Docker Hub (Recomendado)
-Descarga la versión lista para usar directamente de la nube sin tener que construir nada.
--   **Imagen**: `ssubaru/nexushotel:latest`
--   **Comando**:
-    ```bash
-    docker run -p 3000:3000 --env-file .env --name nexusweb ssubaru/nexushotel:latest
-    ```
-
-#### Opción B: Construir localmente
-Usar el `Dockerfile` para construir la imagen en la máquina local.
--   **Comando**:
-    ```bash
-    # Construir e iniciar el servicio en modo desconectado (detached)
-    docker compose up --build -d
-    ```.
-    Esto hará lo siguiente:
-    - Podará el monorepo para aislar la aplicación web.
-    - Instalará las dependencias de producción.
-    - Compilará el proyecto Next.js.
-    - Iniciará el servidor utilizando una imagen ligera `node:22-slim`.
+Este proyecto está configurado con dos entornos Docker distintos para adaptarse a diferentes necesidades: desarrollo local y producción.
 
 ---
 
-# CD - Despliegue en Kubernetes (Helm)
+## 1️⃣ Entorno de Desarrollo (Web App)
 
-Este proyecto utiliza **Helm** para gestionar el despliegue en Kubernetes de manera automatizada y escalable.
+Diseñado para el desarrollo local con capacidades de hot-reloading. Ejecuta la aplicación frontend de Next.js.
 
-## Estructura del Chart
-El Helm Chart se encuentra en la carpeta `/helm` e incluye los siguientes recursos:
-- **Deployment**: Configura 3 réplicas de la aplicación para alta disponibilidad.
-- **Service**: Expone la aplicación internamente mediante un `ClusterIP`.
-- **Ingress**: Gestiona el acceso externo a través de un ingress controller.
-- **Namespace**: Define un espacio de nombres aislado llamado `nexushotel`.
+**Objetivo:** Programar rápido ⚡  
+- **Archivo:** `Dockerfile.dev`  
+- **Puerto:** `3001`  
+- **Uso:** Solo desarrollo local  
 
-## Comandos Útiles
+### Características
 
-### 1. Validación Local
-Para verificar que el chart es técnicamente correcto antes de realizar cualquier despliegue:
+- Hot-Reload: Los cambios en el código se reflejan al instante sin reiniciar.
+- Incluye herramientas de desarrollo y depuración.
+- Ideal para programación y pruebas rápidas.
+
+### Comandos
+
 ```bash
-# Validar sintaxis del chart
+# Construir la imagen de desarrollo
+docker build -f Dockerfile.dev -t nexushotel .
+
+# Ejecutar el contenedor (con variables de entorno desde .env)
+docker run -p 3001:3001 --env-file .env --name nexusdev nexushotel
+```
+
+### Explicación de argumentos
+
+- `-p 3001:3001` → Mapea el puerto 3001 de tu máquina al puerto 3001 del contenedor.
+- `--env-file .env` → Carga las variables de entorno desde tu archivo `.env`.
+- `--name nexusdev` → Asigna un nombre al contenedor.
+
+---
+
+## 2️⃣ Entorno de Producción (Web App)
+
+Diseñado para rendimiento y seguridad. Utiliza un proceso de construcción multi-stage para crear una imagen ligera y optimizada.
+
+**Objetivo:** Estabilidad y rendimiento 🚀  
+- **Archivo:** `Dockerfile`  
+- **Puerto:** `3000`  
+- **Uso:** Producción / despliegue en servidores reales  
+
+### Características
+
+- Imagen optimizada y ligera.
+- Elimina código fuente y herramientas innecesarias.
+- No expone configuraciones de desarrollo.
+- Arranque más rápido en producción.
+
+---
+
+### 🔹 Opción A: Usar imagen pre-construida (Recomendado)
+
+Descarga la versión lista para usar desde Docker Hub.
+
+**Imagen:** `ssubaru/nexushotel:latest`
+
+```bash
+docker run -p 3000:3000 --env-file .env --name nexusweb ssubaru/nexushotel:latest
+```
+
+---
+
+### 🔹 Opción B: Construir localmente
+
+Construye y ejecuta la aplicación usando Docker Compose.
+
+```bash
+docker compose up --build -d
+```
+
+Este proceso realiza automáticamente:
+
+- Aísla la aplicación web del monorepo.
+- Instala dependencias de producción.
+- Compila el proyecto Next.js.
+- Inicia el servidor usando una imagen ligera `node:22-slim`.
+
+---
+# 🚀 CD - Despliegue en Kubernetes (Helm)
+
+Este proyecto utiliza **Helm** para gestionar el despliegue en Kubernetes de forma automatizada, reproducible y escalable como parte del proceso de Continuous Deployment (CD).
+
+---
+
+## 📦 Estructura del Helm Chart
+
+El Helm Chart se encuentra en la carpeta `/helm` e incluye los siguientes recursos principales:
+
+- **Deployment:** Configura 3 réplicas de la aplicación para garantizar alta disponibilidad.
+- **Service:** Expone la aplicación internamente mediante un `ClusterIP`.
+- **Ingress:** Gestiona el acceso externo a la aplicación a través de un Ingress Controller.
+- **Namespace:** Define un espacio de nombres aislado llamado `nexushotel`.
+
+---
+
+## 🛠️ Comandos Útiles
+
+### 1️⃣ Validación Local
+
+Antes de desplegar, se recomienda validar que el chart es correcto y funcional.
+
+```bash
+# Validar la sintaxis del chart
 helm lint ./helm
 
 # Previsualizar los manifiestos que se generarán
 helm template nexushotel ./helm --set image.tag=latest
 ```
 
-### 2. Despliegue Manual (Simulación de CD)
-Para desplegar o actualizar la aplicación en tu clúster actual (ej. Docker Desktop):
+Esto permite:
+- Detectar errores de configuración
+- Revisar los manifiestos Kubernetes antes del despliegue
+- Evitar fallos en el clúster
+
+---
+
+### 2️⃣ Despliegue Manual (Simulación de CD)
+
+Para desplegar o actualizar la aplicación en el clúster actual (por ejemplo: Docker Desktop, Minikube o Kubernetes local):
+
 ```bash
-helm upgrade --install nexushotel ./helm --namespace nexushotel --create-namespace --set image.tag=latest --wait
+helm upgrade --install nexushotel ./helm \
+  --namespace nexushotel \
+  --create-namespace \
+  --set image.tag=latest \
+  --wait
 ```
 
-### 3. Gestión y Verificación con Kubectl
-Comandos esenciales para monitorear el estado del despliegue:
+Este comando:
+- Instala el chart si no existe
+- Actualiza el despliegue si ya está instalado
+- Crea automáticamente el namespace `nexushotel`
+- Espera hasta que los recursos estén completamente listos
+
+---
+
+### 3️⃣ Gestión y Verificación con Kubectl
+
+Comandos esenciales para monitorear el estado del despliegue en Kubernetes:
+
 ```bash
 # Ver todos los recursos (pods, services, deployments)
 kubectl get all -n nexushotel
@@ -253,10 +308,105 @@ kubectl get all -n nexushotel
 kubectl logs -n nexushotel -l app=nexushotel-web
 
 # Exponer la aplicación en localhost (útil para Docker Desktop/Minikube)
-kubectl patch svc nexushotel-svc -n nexushotel -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'
+kubectl patch svc nexushotel-svc -n nexushotel -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-### 4. Automatización con GitHub Actions
-El flujo de **Continuous Deployment** está configurado en `.github/workflows/cd.yml`. Este se activa automáticamente al hacer merge de un Pull Request a la rama `main` o `master`.
+Estos comandos permiten:
+- Supervisar pods y servicios activos
+- Depurar errores mediante logs
+- Probar el acceso local a la aplicación
 
-**Requisito:** Configurar el secreto `KUBECONFIG` en los ajusted del repositorio en GitHub para permitir la conexión al clúster remoto.
+---
+
+### 4️⃣ Automatización con GitHub Actions (CD)
+
+El flujo de Continuous Deployment está configurado en:
+
+```
+.github/workflows/cd.yml
+```
+
+Este pipeline se ejecuta automáticamente cuando:
+- Se hace merge de un Pull Request
+- A la rama `main` o `master`
+
+Durante el flujo de CD:
+- Se obtiene la nueva imagen Docker del registry
+- Se actualiza el chart de Helm
+- Se despliega automáticamente en el clúster de Kubernetes
+
+---
+
+## 🔐 Requisitos de Configuración
+
+Para permitir el despliegue automático en el clúster remoto, es necesario configurar el siguiente secreto en GitHub:
+
+- **Secret requerido:** `KUBECONFIG`
+- Ubicación: Settings → Secrets and variables → Actions (del repositorio)
+
+Este secreto contiene las credenciales del clúster Kubernetes y permite que GitHub Actions realice el despliegue de forma segura.
+
+---
+
+> ⚠️ Importante:  
+> El uso de Helm en el proceso de CD garantiza despliegues consistentes, escalables y automatizados, alineados con las mejores prácticas modernas de DevOps y Kubernetes
+
+# 🌍 Construcción de Infraestructura con Terraform
+
+En **Nexus Hotel**, usamos Terraform para automatizar la creación y gestión de infraestructura en la nube.
+
+## 🎯 ¿Qué hace Terraform en el proyecto?
+
+- Automatiza la creación de proyectos en Vercel:
+  - `hotel-project-web`
+  - `hotel-project-api`
+- Sincroniza automáticamente las variables de entorno (Supabase).
+- Garantiza que el Frontend y el API apunten a la misma base de datos.
+- Mantiene consistencia entre entornos.
+- Versiona la infraestructura como código (IaC).
+
+---
+
+## 📂 Uso de Terraform
+
+Todos los comandos deben ejecutarse dentro de la carpeta `/terraform`.
+
+```bash
+cd terraform
+```
+
+### Comandos básicos
+
+```bash
+# Inicializa los plugins necesarios
+terraform init
+
+# Muestra los cambios antes de aplicarlos
+terraform plan
+
+# Aplica los cambios y crea la infraestructura real
+terraform apply
+```
+
+---
+
+> ⚠️ **Importante**  
+> Gracias a Terraform, nuestra infraestructura es resistente, escalable y transparente, cumpliendo con los estándares modernos de DevOps y CI/CD requeridos por el proyecto.
+
+## Evidencias Fase 2
+
+### Docker Image
+<img width="1600" height="859" alt="image" src="https://github.com/user-attachments/assets/f9c3cf2a-a03f-4d23-b6eb-e1c0e0f60137" />
+
+### Docker Terminal
+<img width="1600" height="280" alt="image" src="https://github.com/user-attachments/assets/6f21f8e6-62dd-47bd-a345-2f82f6efbe4b" />
+
+### Kubernetes
+<img width="1600" height="500" alt="image" src="https://github.com/user-attachments/assets/ff58e949-4a3d-4578-be4b-aff208d6c164" />
+<img width="1600" height="500" alt="image" src="https://github.com/user-attachments/assets/526a3e91-4209-4786-a25f-abe9845fe1ae" />
+
+### Kubernetes Terminal
+<img width="1600" height="340" alt="image" src="https://github.com/user-attachments/assets/eaa9377a-79eb-4f5c-a68a-a178a61b05b1" />
+
+### Terraform Back Up
+<img width="1600" height="197" alt="image" src="https://github.com/user-attachments/assets/5f4e0e22-9cab-466f-a4d2-a4f209b5da38" />
