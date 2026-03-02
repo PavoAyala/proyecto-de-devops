@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "srvx"
+    "dev": "srvx",
+    "start": "srvx dist/index.js"
   },
   "dependencies": {
     "@repo/constants": "workspace:*"
