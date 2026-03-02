@@ -1,0 +1,55 @@
+name: CD – Deploy to Kubernetes
+
+# Se dispara cuando se hace merge de un PR a main/master
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    name: Deploy con Helm a Kubernetes
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Obtener el código del repositorio
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      # 2. Configurar kubectl usando el kubeconfig almacenado como Secret
+      - name: Configurar kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "latest"
+
+      - name: Escribir kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
+      # 3. Instalar Helm
+      - name: Instalar Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: "latest"
+
+      # 4. Construir el tag de la imagen a partir del SHA del commit
+      #    Esto garantiza que coincida exactamente con la imagen subida en el CI
+      - name: Definir tag de imagen
+        id: vars
+        run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+      # 5. Desplegar con Helm usando helm upgrade --install
+      #    Si el release no existe lo crea; si existe lo actualiza (rolling update)
+      - name: Helm upgrade --install
+        run: |
+          helm upgrade --install nexushotel ./helm \
+            --namespace nexushotel \
+            --create-namespace \
+            --set image.repository=ssubaru/nexushotel \
+            --set image.tag=${{ steps.vars.outputs.IMAGE_TAG }} \
+            --set image.pullPolicy=Always \
+            --wait \
+            --timeout 5m

@@ -211,3 +211,52 @@ Usar el `Dockerfile` para construir la imagen en la máquina local.
     - Instalará las dependencias de producción.
     - Compilará el proyecto Next.js.
     - Iniciará el servidor utilizando una imagen ligera `node:22-slim`.
+
+---
+
+# CD - Despliegue en Kubernetes (Helm)
+
+Este proyecto utiliza **Helm** para gestionar el despliegue en Kubernetes de manera automatizada y escalable.
+
+## Estructura del Chart
+El Helm Chart se encuentra en la carpeta `/helm` e incluye los siguientes recursos:
+- **Deployment**: Configura 3 réplicas de la aplicación para alta disponibilidad.
+- **Service**: Expone la aplicación internamente mediante un `ClusterIP`.
+- **Ingress**: Gestiona el acceso externo a través de un ingress controller.
+- **Namespace**: Define un espacio de nombres aislado llamado `nexushotel`.
+
+## Comandos Útiles
+
+### 1. Validación Local
+Para verificar que el chart es técnicamente correcto antes de realizar cualquier despliegue:
+```bash
+# Validar sintaxis del chart
+helm lint ./helm
+
+# Previsualizar los manifiestos que se generarán
+helm template nexushotel ./helm --set image.tag=latest
+```
+
+### 2. Despliegue Manual (Simulación de CD)
+Para desplegar o actualizar la aplicación en tu clúster actual (ej. Docker Desktop):
+```bash
+helm upgrade --install nexushotel ./helm --namespace nexushotel --create-namespace --set image.tag=latest --wait
+```
+
+### 3. Gestión y Verificación con Kubectl
+Comandos esenciales para monitorear el estado del despliegue:
+```bash
+# Ver todos los recursos (pods, services, deployments)
+kubectl get all -n nexushotel
+
+# Ver logs de la aplicación
+kubectl logs -n nexushotel -l app=nexushotel-web
+
+# Exponer la aplicación en localhost (útil para Docker Desktop/Minikube)
+kubectl patch svc nexushotel-svc -n nexushotel -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'
+```
+
+### 4. Automatización con GitHub Actions
+El flujo de **Continuous Deployment** está configurado en `.github/workflows/cd.yml`. Este se activa automáticamente al hacer merge de un Pull Request a la rama `main` o `master`.
+
+**Requisito:** Configurar el secreto `KUBECONFIG` en los ajusted del repositorio en GitHub para permitir la conexión al clúster remoto.
