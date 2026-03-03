@@ -410,3 +410,6 @@ terraform apply
 
 ### Terraform Back Up
 <img width="1600" height="197" alt="image" src="https://github.com/user-attachments/assets/5f4e0e22-9cab-466f-a4d2-a4f209b5da38" />
+
+### Terraform Apply
+<img width="1600" height="197" alt="image" src="" />
