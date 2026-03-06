@@ -6,7 +6,6 @@ import Button from '../Button';
 import {
     calculateTotal,
     calculateNights,
-    formatDate,
     createReservation,
     BookingData
 } from '../../utils/booking';
@@ -102,7 +101,7 @@ const BookingWorkflow: React.FC<BookingWorkflowProps> = ({
     };
 
     const validateStep2 = (): boolean => {
-        if (!paymentData.cardNumber.replace(/\s/g, '').match(/^\d{16}$/)) {
+        if (!/^\d{16}$/.test(paymentData.cardNumber.replaceAll(/\s/g, ''))) {
             setError('Numero de tarjeta invalido (16 digitos)');
             return false;
         }
@@ -110,11 +109,29 @@ const BookingWorkflow: React.FC<BookingWorkflowProps> = ({
             setError('Por favor ingresa el nombre en la tarjeta');
             return false;
         }
-        if (!paymentData.expiry.match(/^\d{2}\/\d{2}$/)) {
+        if (!/^\d{2}\/\d{2}$/.test(paymentData.expiry)) {
             setError('Fecha de expiracion invalida (MM/YY)');
             return false;
         }
-        if (!paymentData.cvv.match(/^\d{3,4}$/)) {
+
+        const [expMonth, expYearStr] = paymentData.expiry.split('/');
+        const expMonthNum = Number.parseInt(expMonth || '0', 10);
+        const expYearNum = Number.parseInt(expYearStr || '0', 10) + 2000;
+
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentYear = currentDate.getFullYear();
+
+        if (expMonthNum < 1 || expMonthNum > 12) {
+            setError('Mes de expiracion invalido');
+            return false;
+        }
+
+        if (expYearNum < currentYear || (expYearNum === currentYear && expMonthNum < currentMonth)) {
+            setError('La tarjeta ha expirado');
+            return false;
+        }
+        if (!/^\d{3,4}$/.test(paymentData.cvv)) {
             setError('CVV invalido');
             return false;
         }
@@ -168,9 +185,9 @@ const BookingWorkflow: React.FC<BookingWorkflowProps> = ({
     };
 
     const formatCardNumber = (value: string) => {
-        const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        const v = value.replaceAll(/\s+/g, '').replaceAll(/\D/g, '');
         const matches = v.match(/\d{4,16}/g);
-        const match = (matches && matches[0]) || '';
+        const match = matches?.[0] || '';
         const parts = [];
         for (let i = 0, len = match.length; i < len; i += 4) {
             parts.push(match.substring(i, i + 4));
@@ -208,59 +225,67 @@ const BookingWorkflow: React.FC<BookingWorkflowProps> = ({
 
                             <div className={styles.formRow}>
                                 <div className={styles.inputGroup}>
-                                    <label>Nombre *</label>
-                                    <input
-                                        type="text"
-                                        className={styles.input}
-                                        value={guestData.nombre}
-                                        onChange={(e) => setGuestData({
-                                            ...guestData,
-                                            nombre: e.target.value
-                                        })}
-                                        placeholder="Tu nombre"
-                                    />
+                                    <label>
+                                        <span>Nombre *</span>
+                                        <input
+                                            type="text"
+                                            className={styles.input}
+                                            value={guestData.nombre}
+                                            onChange={(e) => setGuestData({
+                                                ...guestData,
+                                                nombre: e.target.value
+                                            })}
+                                            placeholder="Tu nombre"
+                                        />
+                                    </label>
                                 </div>
                                 <div className={styles.inputGroup}>
-                                    <label>Apellido *</label>
-                                    <input
-                                        type="text"
-                                        className={styles.input}
-                                        value={guestData.apellido}
-                                        onChange={(e) => setGuestData({
-                                            ...guestData,
-                                            apellido: e.target.value
-                                        })}
-                                        placeholder="Tu apellido"
-                                    />
+                                    <label>
+                                        <span>Apellido *</span>
+                                        <input
+                                            type="text"
+                                            className={styles.input}
+                                            value={guestData.apellido}
+                                            onChange={(e) => setGuestData({
+                                                ...guestData,
+                                                apellido: e.target.value
+                                            })}
+                                            placeholder="Tu apellido"
+                                        />
+                                    </label>
                                 </div>
                             </div>
 
                             <div className={styles.inputGroup}>
-                                <label>Email *</label>
-                                <input
-                                    type="email"
-                                    className={styles.input}
-                                    value={guestData.email}
-                                    onChange={(e) => setGuestData({
-                                        ...guestData,
-                                        email: e.target.value
-                                    })}
-                                    placeholder="tu@email.com"
-                                />
+                                <label>
+                                    <span>Email *</span>
+                                    <input
+                                        type="email"
+                                        className={styles.input}
+                                        value={guestData.email}
+                                        onChange={(e) => setGuestData({
+                                            ...guestData,
+                                            email: e.target.value
+                                        })}
+                                        placeholder="tu@email.com"
+                                    />
+                                </label>
                             </div>
 
                             <div className={styles.inputGroup}>
-                                <label>Telefono</label>
-                                <input
-                                    type="tel"
-                                    className={styles.input}
-                                    value={guestData.telefono}
-                                    onChange={(e) => setGuestData({
-                                        ...guestData,
-                                        telefono: e.target.value
-                                    })}
-                                    placeholder="+52 123 456 7890"
-                                />
+                                <label>
+                                    <span>Telefono</span>
+                                    <input
+                                        type="tel"
+                                        className={styles.input}
+                                        value={guestData.telefono}
+                                        onChange={(e) => setGuestData({
+                                            ...guestData,
+                                            telefono: e.target.value
+                                        })}
+                                        placeholder="+52 123 456 7890"
+                                    />
+                                </label>
                             </div>
 
                             <div className={styles.actions}>
@@ -289,69 +314,79 @@ const BookingWorkflow: React.FC<BookingWorkflowProps> = ({
                                 </div>
                             </div>
 
-                            <div className={styles.inputGroup}>
-                                <label>Numero de Tarjeta *</label>
-                                <input
-                                    type="text"
-                                    className={styles.input}
-                                    value={paymentData.cardNumber}
-                                    onChange={(e) => setPaymentData({
-                                        ...paymentData,
-                                        cardNumber: formatCardNumber(e.target.value)
-                                    })}
-                                    placeholder="1234 5678 9012 3456"
-                                    maxLength={19}
-                                />
-                            </div>
+                            <div className={styles.formRow}>
+                                <div className={styles.inputGroup}>
+                                    <label>
+                                        <span>Numero de Tarjeta *</span>
+                                        <input
+                                            type="text"
+                                            className={styles.input}
+                                            value={paymentData.cardNumber}
+                                            onChange={(e) => setPaymentData({
+                                                ...paymentData,
+                                                cardNumber: formatCardNumber(e.target.value)
+                                            })}
+                                            placeholder="1234 5678 9012 3456"
+                                            maxLength={19}
+                                        />
+                                    </label>
+                                </div>
 
-                            <div className={styles.inputGroup}>
-                                <label>Nombre en la Tarjeta *</label>
-                                <input
-                                    type="text"
-                                    className={styles.input}
-                                    value={paymentData.cardName}
-                                    onChange={(e) => setPaymentData({
-                                        ...paymentData,
-                                        cardName: e.target.value.toUpperCase()
-                                    })}
-                                    placeholder="NOMBRE APELLIDO"
-                                />
+                                <div className={styles.inputGroup}>
+                                    <label>
+                                        <span>Nombre en la Tarjeta *</span>
+                                        <input
+                                            type="text"
+                                            className={styles.input}
+                                            value={paymentData.cardName}
+                                            onChange={(e) => setPaymentData({
+                                                ...paymentData,
+                                                cardName: e.target.value.toUpperCase()
+                                            })}
+                                            placeholder="NOMBRE APELLIDO"
+                                        />
+                                    </label>
+                                </div>
                             </div>
 
                             <div className={styles.formRow}>
                                 <div className={styles.inputGroup}>
-                                    <label>Fecha de Expiracion *</label>
-                                    <input
-                                        type="text"
-                                        className={styles.input}
-                                        value={paymentData.expiry}
-                                        onChange={(e) => {
-                                            let value = e.target.value.replace(/\D/g, '');
-                                            if (value.length >= 2) {
-                                                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-                                            }
-                                            setPaymentData({
-                                                ...paymentData,
-                                                expiry: value
-                                            });
-                                        }}
-                                        placeholder="MM/YY"
-                                        maxLength={5}
-                                    />
+                                    <label>
+                                        <span>Fecha de Expiracion *</span>
+                                        <input
+                                            type="text"
+                                            className={styles.input}
+                                            value={paymentData.expiry}
+                                            onChange={(e) => {
+                                                let value = e.target.value.replaceAll(/\D/g, '');
+                                                if (value.length >= 2) {
+                                                    value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                                                }
+                                                setPaymentData({
+                                                    ...paymentData,
+                                                    expiry: value
+                                                });
+                                            }}
+                                            placeholder="MM/YY"
+                                            maxLength={5}
+                                        />
+                                    </label>
                                 </div>
                                 <div className={styles.inputGroup}>
-                                    <label>CVV *</label>
-                                    <input
-                                        type="text"
-                                        className={styles.input}
-                                        value={paymentData.cvv}
-                                        onChange={(e) => setPaymentData({
-                                            ...paymentData,
-                                            cvv: e.target.value.replace(/\D/g, '')
-                                        })}
-                                        placeholder="123"
-                                        maxLength={4}
-                                    />
+                                    <label>
+                                        <span>CVV *</span>
+                                        <input
+                                            type="text"
+                                            className={styles.input}
+                                            value={paymentData.cvv}
+                                            onChange={(e) => setPaymentData({
+                                                ...paymentData,
+                                                cvv: e.target.value.replaceAll(/\D/g, '')
+                                            })}
+                                            placeholder="123"
+                                            maxLength={4}
+                                        />
+                                    </label>
                                 </div>
                             </div>
 
@@ -437,41 +472,47 @@ const BookingWorkflow: React.FC<BookingWorkflowProps> = ({
                             {/* Fechas editables */}
                             <div className={styles.editableDates}>
                                 <div className={styles.dateInputGroup}>
-                                    <label className={styles.dateInputLabel}>Check-in</label>
-                                    <input
-                                        type="date"
-                                        className={styles.dateInput}
-                                        value={checkIn}
-                                        min={today}
-                                        onChange={(e) => setCheckIn(e.target.value)}
-                                    />
+                                    <label className={styles.dateInputLabel}>
+                                        <span>Check-in</span>
+                                        <input
+                                            type="date"
+                                            className={styles.dateInput}
+                                            value={checkIn}
+                                            min={today}
+                                            onChange={(e) => setCheckIn(e.target.value)}
+                                        />
+                                    </label>
                                 </div>
                                 <div className={styles.dateInputGroup}>
-                                    <label className={styles.dateInputLabel}>Check-out</label>
-                                    <input
-                                        type="date"
-                                        className={styles.dateInput}
-                                        value={checkOut}
-                                        min={checkIn}
-                                        onChange={(e) => setCheckOut(e.target.value)}
-                                    />
+                                    <label className={styles.dateInputLabel}>
+                                        <span>Check-out</span>
+                                        <input
+                                            type="date"
+                                            className={styles.dateInput}
+                                            value={checkOut}
+                                            min={checkIn}
+                                            onChange={(e) => setCheckOut(e.target.value)}
+                                        />
+                                    </label>
                                 </div>
                             </div>
 
                             {/* Huespedes editable - maximo segun capacidad de habitacion */}
                             <div className={styles.guestInputGroup}>
-                                <label className={styles.dateInputLabel}>Huespedes (max. {room.capacidad})</label>
-                                <select
-                                    className={styles.guestSelect}
-                                    value={guestsCount}
-                                    onChange={(e) => setGuestsCount(Number(e.target.value))}
-                                >
-                                    {Array.from({ length: room.capacidad }, (_, i) => i + 1).map(num => (
-                                        <option key={num} value={num}>
-                                            {num} {num === 1 ? 'Huesped' : 'Huespedes'}
-                                        </option>
-                                    ))}
-                                </select>
+                                <label className={styles.dateInputLabel}>
+                                    <span>Huespedes (max. {room.capacidad})</span>
+                                    <select
+                                        className={styles.guestSelect}
+                                        value={guestsCount}
+                                        onChange={(e) => setGuestsCount(Number(e.target.value))}
+                                    >
+                                        {Array.from({ length: room.capacidad }, (_, i) => i + 1).map(num => (
+                                            <option key={num} value={num}>
+                                                {num} {num === 1 ? 'Huesped' : 'Huespedes'}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </label>
                             </div>
 
                             <div className={styles.priceBreakdown}>
