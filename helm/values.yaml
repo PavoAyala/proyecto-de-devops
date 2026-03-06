@@ -1,0 +1,45 @@
+# Valores por defecto para el Helm Chart de Nexus Hotel
+# Estos valores pueden sobreescribirse con --set o -f values-override.yaml
+
+# Configuración de la imagen Docker
+image:
+  repository: ssubaru/nexushotel
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# Número de réplicas del Deployment
+replicaCount: 3
+
+# Nombre de la aplicación (usado para labels y nombres de recursos)
+appName: nexushotel-web
+
+# Namespace donde se desplegará la aplicación
+namespace: nexushotel
+
+# Configuración del Service
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+# Configuración del Ingress
+ingress:
+  enabled: true
+  className: nginx
+  host: nexushotel.local  # Cambiar al dominio real en producción
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
+# Variables de entorno de la aplicación
+env:
+  NODE_ENV: production
+  PORT: "3000"
+
+# Recursos del contenedor
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"

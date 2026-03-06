@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
                     <ul className={styles.navLinks}>
                         <li><a id="rooms" href="/habitaciones" className={styles.link}>Rooms</a></li>
                         <li><a id="restaurant" href="/restaurantes" className={styles.link}>Restaurant</a></li>
-                        <li><a id="events" href="#events" className={styles.link}>Events</a></li>
+                        <li><a id="experiences" href="/experiences" className={styles.link}>Experiences</a></li>
                     </ul>
                     <div className={styles.actions}>
                         <Button variant="outline" href="/habitaciones">Book Now</Button>
