@@ -41,3 +41,28 @@
     margin-top: 1rem;
     width: 100%;
 }
+
+.searchInfo {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.searchInfo strong {
+    color: var(--accent);
+}
+
+.totalPrice {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.totalPrice strong {
+    color: var(--accent);
+    font-size: 1.1rem;
+}

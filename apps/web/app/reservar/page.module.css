@@ -1,0 +1,37 @@
+.pageContainer {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--accent);
+}
+
+.errorText {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.backLink {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.8rem 1.6rem;
+    background-color: var(--accent);
+    color: var(--primary);
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.backLink:hover {
+    background-color: var(--accent-light);
+    transform: translateY(-2px);
+}
