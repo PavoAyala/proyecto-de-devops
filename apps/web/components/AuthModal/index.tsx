@@ -61,7 +61,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         } else {
             resetForm();
             onClose();
-            window.location.reload();
         }
     };
 
@@ -106,10 +105,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         setLoading(true);
         setError(null);
 
+        const redirectTo = window.location.origin;
+        console.log('Intentando redirigir a:', redirectTo);
+
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
             options: {
-                redirectTo: window.location.origin,
+                redirectTo,
             },
         });
 

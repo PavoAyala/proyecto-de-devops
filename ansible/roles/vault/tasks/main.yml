@@ -1,0 +1,47 @@
+---
+- name: Instalar dependencias
+  apt:
+    name:
+      - gpg
+      - wget
+      - software-properties-common
+    state: present
+    update_cache: yes
+
+- name: Añadir llave GPG de HashiCorp
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: Añadir repositorio de HashiCorp
+  apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+
+- name: Instalar Vault
+  apt:
+    name: vault
+    state: present
+
+- name: Crear directorio de datos
+  file:
+    path: /opt/vault/data
+    state: directory
+    owner: vault
+    group: vault
+    mode: '0750'
+
+- name: Configurar Vault
+  template:
+    src: vault.hcl.j2
+    dest: /etc/vault.d/vault.hcl
+    owner: vault
+    group: vault
+    mode: '0640'
+  notify: reiniciar vault
+
+- name: Asegurar que Vault esté iniciado y habilitado
+  systemd:
+    name: vault
+    state: started
+    enabled: yes
