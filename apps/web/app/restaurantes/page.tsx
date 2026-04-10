@@ -54,7 +54,9 @@ export default async function RestaurantsPage() {
                             <h2 className={styles.restaurantName}>{restaurant.nombre}</h2>
                             <span className={styles.cuisineType}>{restaurant.tipo_comida}</span>
                             <p className={styles.description}>{restaurant.descripcion}</p>
-                            <Button variant="outline">Reserve a Table</Button>
+                            <Button variant="outline" href={`/reservar-restaurante?restaurantId=${restaurant.id}`}>
+                                Reserve a Table
+                            </Button>
                         </div>
                     </section>
                 ))}
