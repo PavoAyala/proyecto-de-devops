@@ -7,6 +7,12 @@ on:
       - main
       - master
 
+  pull_request:
+    branches:
+      - main
+      - dev
+    types: [opened, synchronize, reopened]
+
 jobs:
   deploy:
     name: Deploy con Helm a Kubernetes
@@ -44,6 +50,7 @@ jobs:
       # 5. Desplegar con Helm usando helm upgrade --install
       #    Si el release no existe lo crea; si existe lo actualiza (rolling update)
       - name: Helm upgrade --install
+        if: github.event_name == 'push'
         run: |
           helm upgrade --install nexushotel ./helm \
             --namespace nexushotel \
