@@ -1,6 +1,6 @@
 ---
 - name: Instalar y configurar HashiCorp Vault
   hosts: vault_server
-  become: yes
+  become: true
   roles:
     - vault
