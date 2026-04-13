@@ -414,3 +414,230 @@ terraform apply
 ### Terraform Apply
 <img width="1290" height="420" alt="image" src="https://github.com/user-attachments/assets/d509f185-5dcb-4b43-bb38-db336251502f" />
 
+# 📍 Fase 3 – Implementacion de Ansible y Vault
+---
+
+# 🔑 CI/CD - Gestión Segura de Secretos con Vault
+
+En este proyecto implementamos **HashiCorp Vault** como solución centralizada para la gestión de secretos utilizados en nuestros pipelines de **CI/CD (GitHub Actions)**, asegurando que credenciales sensibles no se expongan en el código ni en variables inseguras.
+
+---
+
+## 🎯 ¿Qué se implementó?
+
+- Aprovisionamiento automatizado con **Ansible**
+- Despliegue de Vault en una **máquina virtual de Azure**
+- Habilitación de la **interfaz web (UI)**
+- Configuración de **KV Secret Engine**
+- Creación de **políticas de acceso restringidas**
+- Generación de un **token seguro para GitHub Actions**
+
+---
+
+## ⚙️ Aprovisionamiento con Ansible
+
+Para garantizar reproducibilidad y automatización, se utilizó **Ansible** para instalar y configurar Vault desde cero en una VM externa al clúster.
+
+### 📦 Estructura utilizada
+
+```bash
+ansible/
+ ├── inventory
+ ├── playbook.yml
+ └── roles/
+     └── vault/
+         ├── tasks/
+         ├── handlers/
+         ├── templates/
+         └── vars/
+```
+
+---
+
+### 🛠️ Ejecución del Playbook
+
+```bash
+ansible-playbook -i inventory playbook.yml
+```
+
+Este proceso automatiza:
+
+- Instalación de dependencias necesarias
+- Descarga e instalación de Vault
+- Configuración del servicio con systemd
+- Configuración del archivo principal (`vault.hcl`)
+- Exposición del puerto 8200
+
+---
+
+## 🔐 Implementación del Servidor Vault
+
+Vault se desplegó en una **VM Linux en Azure**, completamente separada del clúster de Kubernetes, lo cual mejora la seguridad y el aislamiento de los secretos.
+
+---
+
+### 📌 Configuración del servidor
+
+```hcl
+storage "file" {
+  path = "/opt/vault/data"
+}
+
+listener "tcp" {
+  address     = "0.0.0.0:8200"
+  tls_disable = 1
+}
+
+ui = true
+```
+
+Esta configuración permite:
+
+- Persistencia local de secretos
+- Acceso desde cualquier IP (para pruebas)
+- Habilitación de la interfaz web
+
+---
+
+### 🚀 Inicialización del servidor
+
+```bash
+vault operator init
+vault operator unseal
+```
+
+Durante este proceso:
+
+- Se generan las claves de recuperación (unseal keys)
+- Se obtiene el token root inicial
+- Se habilita el uso del servidor
+
+---
+
+## 🌐 Interfaz Web de Vault
+
+Vault cuenta con una interfaz web accesible desde el navegador:
+
+```
+http://<IP_PUBLICA_VM_AZURE>:8200
+```
+
+### Funcionalidades utilizadas
+
+- Visualización de secretos
+- Creación de políticas
+- Gestión de tokens
+- Administración general del servidor
+
+---
+
+## 🔑 Gestión de Secretos (KV Engine)
+
+Se configuró el motor de secretos tipo **KV (Key-Value)** para almacenar credenciales utilizadas en CI/CD.
+
+```bash
+vault secrets enable -path=secret kv
+```
+
+### Ejemplo de uso
+
+```bash
+vault kv put secret/github token=ghp_xxxxx
+```
+
+Esto permite almacenar secretos como:
+
+- Tokens de GitHub
+- Credenciales de APIs
+- Variables sensibles del sistema
+
+---
+
+## 🛡️ Control de Acceso mediante Políticas
+
+Se creó una política personalizada para limitar el acceso únicamente a los secretos necesarios.
+
+```hcl
+path "secret/data/github" {
+  capabilities = ["read"]
+}
+```
+
+Aplicación:
+
+```bash
+vault policy write github-policy policy.hcl
+```
+
+---
+
+## 🔑 Token para GitHub Actions
+
+Se generó un token específico para el pipeline de CI/CD:
+
+```bash
+vault token create -policy=github-policy
+```
+
+Este token:
+
+- Tiene permisos limitados
+- Solo puede leer secretos específicos
+- Se almacena como secreto en GitHub (`VAULT_TOKEN`)
+
+---
+
+## 🔄 Integración con GitHub Actions
+
+El pipeline accede a Vault de forma segura para obtener secretos en tiempo de ejecución:
+
+```yaml
+- name: Obtener secretos desde Vault
+  run: |
+    export VAULT_ADDR=http://<IP_PUBLICA>:8200
+    vault login ${{ secrets.VAULT_TOKEN }}
+    vault kv get secret/github
+```
+
+Esto permite:
+
+- No exponer credenciales en el repositorio
+- Obtener secretos dinámicamente
+- Mejorar la seguridad del pipeline
+
+---
+
+## 📊 Criterios de Evaluación
+
+| Criterio | Puntaje |
+|----------|--------|
+| Crear el aprovisionamiento | 25 |
+| Implementar el servidor Vault para administrar la seguridad necesaria | 25 |
+| Interfaz de usuario habilitada y accesible | 25 |
+| Documentar todo el proceso en el portafolio de evidencias | 25 |
+
+---
+
+> ⚠️ **Importante**  
+> El uso de Vault en el proyecto garantiza una gestión segura, centralizada y escalable de secretos, alineándose con las mejores prácticas de **DevSecOps** en entornos modernos de CI/CD.
+
+---
+## Evidencias Fase 3
+
+### Virtual Machine en Google Cloud
+<img width="1600" height="390" alt="image" src="https://github.com/user-attachments/assets/d9998aea-dd20-4201-8e14-ac2e233cdf35" />
+
+### Ingreso de la Virtual Machine
+<img width="1600" height="273" alt="image" src="https://github.com/user-attachments/assets/016700c8-a341-408f-a8c0-b6486ef40691" />
+
+### Ejecucion de los Playbook de Aansible para ingresar a Vault
+<img width="1600" height="1284" alt="image" src="https://github.com/user-attachments/assets/47753de5-2a50-429b-8709-f0dde1f0d652" />
+<img width="1600" height="449" alt="image" src="https://github.com/user-attachments/assets/73429d37-48e9-47a3-829e-39290858f42f" />
+
+### Secretos
+<img width="620" height="151" alt="image" src="https://github.com/user-attachments/assets/110fa56d-721c-4161-9ca4-ec8158ca07c0" />
+
+### Git Hub Actions
+<img width="1399" height="968" alt="image" src="https://github.com/user-attachments/assets/bfcff582-9cf2-44d6-b5ba-3b780c81cbf6" />
+<img width="1399" height="790" alt="image" src="https://github.com/user-attachments/assets/ede6ca10-7716-497f-9b10-37226a93fb18" />
+
