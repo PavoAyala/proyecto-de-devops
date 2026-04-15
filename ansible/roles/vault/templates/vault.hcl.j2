@@ -7,5 +7,10 @@ listener "tcp" {
   tls_disable = 1
 }
 
+# GCP: Shamir seal (unseal manual).
+# Si deseas auto-unseal, configura seal "gcpckms" con tu KMS de Google Cloud.
+
 ui = true
 disable_mlock = true
+
+api_addr = "http://{{ ansible_host }}:8200"

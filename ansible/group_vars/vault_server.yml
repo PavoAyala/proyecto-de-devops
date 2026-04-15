@@ -1,0 +1,9 @@
+# ── Google Cloud VM ──────────────────────────────
+vault_internal_ip: "10.128.0.2"
+vault_external_ip: "35.225.130.238"
+
+# Desactivado: Azure Key Vault auto-unseal (se migró a GCP)
+# azure_tenant_id: "030e951d-6efd-42f5-8427-bab632cf8010"
+# azure_kv_name: "vault-kv-nexushotel-prod"
+# azure_kv_key_name: "vault-unseal-key"
+# azure_resource_group: "RG-NEXUSHOTEL-VAULT"
