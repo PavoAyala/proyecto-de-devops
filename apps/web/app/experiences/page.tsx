@@ -12,7 +12,7 @@ const weeklyEvents = [
                 description: "Outdoor cinema experience for families under the stars.",
                 location: "Garden Terrace",
                 category: "Family",
-                image: "/events/monday-movie.jpg"
+                image: "/imagen/monday-movie.jpg"
             }
         ]
     },
@@ -24,7 +24,7 @@ const weeklyEvents = [
                 description: "Exclusive wine tasting with our certified sommelier and our worderful dinner experience.",
                 location: "Sky Lounge",
                 category: "Lifestyle",
-                image: "/events/tuesday-wine.jpg"
+                image: "/imagen/tuesday-wine.jpg"
             }
         ]
     },
@@ -36,7 +36,7 @@ const weeklyEvents = [
                 description: "Smooth live jazz with signature cocktails.",
                 location: "Ocean Breeze Café",
                 category: "Music",
-                image: "/events/wednesday-jazz.jpg"
+                image: "/imagen/wednesday-jazz.jpg"
             }
         ]
     },
@@ -48,7 +48,7 @@ const weeklyEvents = [
                 description: "Limited gourmet menu curated by our executive chef.",
                 location: "Aura Gourmet",
                 category: "Dining",
-                image: "/events/thursday-chef.jpg"
+                image: "/imagen/thursday-chef.jpg"
             }
         ]
     },
@@ -60,7 +60,7 @@ const weeklyEvents = [
                 description: "A themed dining experience inspired by Mediterranean flavors.",
                 location: "Aura Gourmet",
                 category: "Dining",
-                image: "/events/friday-mediterranean.jpg"
+                image: "/imagen/friday-mediterranean.jpg"
             }
         ]
     },
@@ -72,7 +72,7 @@ const weeklyEvents = [
                 description: "High-energy pool party with DJ and foam effects.",
                 location: "Main Pool",
                 category: "Party",
-                image: "/events/saturday-foam.jpg"
+                image: "/imagen/saturday-foam.jpg"
             }
         ]
     },
@@ -84,7 +84,7 @@ const weeklyEvents = [
                 description: "Premium brunch buffet with live acoustic music.",
                 location: "Ocean Breeze Café",
                 category: "Lifestyle",
-                image: "/events/sunday-brunch.jpg"
+                image: "/imagen/sunday-brunch.jpg"
             }
         ]
     }
