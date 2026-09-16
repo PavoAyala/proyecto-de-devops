@@ -1,220 +1,220 @@
-# 🏨 Nexus Hotel – Fase 1
+# 🏨 Nexus Hotel – Phase 1
 
-> Plataforma digital de reservaciones con enfoque en **Seguridad**, **Disponibilidad** y **DevOps**
-
----
-
-## 📌 Descripción General
-
-Este proyecto tiene como enfoque proporcionar a clientes actuales y nuevos de **Nexus Hotel** una forma **rápida, segura y confiable** de reservar dentro de las instalaciones del hotel, eliminando la dependencia del método tradicional de llamadas a recepción.
-
-Las instalaciones contempladas incluyen:
-* 🛏️ Habitaciones
-* 🍽️ Mesas en los distintos restaurantes del hotel
-* 🏢 Espacios para eventos y reuniones
-
-La plataforma manejará **información personal**, **datos de contacto**, **preferencias de hospedaje** y **datos bancarios**, por lo que se vuelve indispensable garantizar **altos niveles de seguridad, disponibilidad y confiabilidad**.
+> Digital reservation platform with a focus on **Security**, **Availability**, and **DevOps**
 
 ---
 
-## 🔗 Gestión del Proyecto
+## 📌 Overview
+
+The focus of this project is to provide current and new clients of **Nexus Hotel** with a **fast, secure, and reliable** way to book facilities within the hotel, eliminating the reliance on the traditional method of calling the front desk.
+
+The facilities considered include:
+* 🛏️ Rooms
+* 🍽️ Tables at the different hotel restaurants
+* 🏢 Spaces for events and meetings
+
+The platform will handle **personal information**, **contact details**, **accommodation preferences**, and **bank details**, making it essential to guarantee **high levels of security, availability, and reliability**.
+
+---
+
+## 🔗 Project Management
 
 * **Jira:**
   [https://hoteldevops.atlassian.net/jira/core/projects/NXS/calendar](https://hoteldevops.atlassian.net/jira/core/projects/NXS/calendar)
 
 ---
 
-## 🔐 Justificación de la Metodología DevOps y Código Abierto
+## 🔐 Justification for DevOps Methodology and Open Source
 
-Proteger la información de los clientes es una prioridad crítica. Desde el punto de vista de un empresario, político o incluso un cliente común, surge una pregunta clave:
+Protecting client information is a critical priority. From the point of view of a businessman, politician, or even an ordinary client, a key question arises:
 
-> ¿Es seguro que cualquiera con conocimientos básicos de TI pueda acceder a los datos personales, fecha y hora de una reservación?
+> Is it secure that anyone with basic IT knowledge can access personal data, date, and time of a reservation?
 
-Asimismo, un cliente que desea celebrar un evento especial necesita sentirse seguro al compartir **sus datos bancarios**, confiando en que el hotel cuenta con medidas mínimas y avanzadas de **ciberseguridad**.
+Likewise, a client wishing to celebrate a special event needs to feel secure when sharing **their bank details**, trusting that the hotel has minimum and advanced **cybersecurity** measures in place.
 
-La metodología **DevOps** permite asegurar un ciclo de mejora continua, reforzando tanto la **seguridad** como la **estabilidad** del sistema.
+The **DevOps** methodology ensures a continuous improvement cycle, reinforcing both the **security** and **stability** of the system.
 
-### Beneficios Clave de DevOps
+### Key Benefits of DevOps
 
-* **🛡️ Seguridad Continua**
-  Integración de pruebas automatizadas y análisis de vulnerabilidades dentro del ciclo de desarrollo para detectar y corregir fallos antes de que impacten a los clientes.
+* **🛡️ Continuous Security**
+  Integration of automated testing and vulnerability scanning within the development cycle to detect and correct flaws before they impact clients.
 
-* **⚙️ Alta Disponibilidad del Servicio**
-  Actualizaciones rápidas y controladas sin interrupciones, asegurando que el sistema de reservas esté siempre en línea.
+* **⚙️ High Service Availability**
+  Fast and controlled updates without interruptions, ensuring that the reservation system is always online.
 
-* **🤝 Colaboración en Código Abierto**
-  Estandarización de procesos mediante control de versiones, integración continua y repositorios compartidos, asegurando calidad y evitando conflictos.
+* **🤝 Open Source Collaboration**
+  Standardization of processes through version control, continuous integration, and shared repositories, ensuring quality and avoiding conflicts.
 
-* **📈 Escalabilidad y Rendimiento**
-  Capacidad de monitorear el sistema en tiempo real y escalar recursos automáticamente en temporadas de alta demanda.
-
----
-
-## 💼 Plan de Negocios
-
-### Resumen Ejecutivo
-
-Nexus Hotel busca implementar una herramienta digital innovadora que sustituya el proceso tradicional de reservaciones por llamada telefónica. La solución permitirá a clientes existentes y nuevos realizar reservaciones de forma **rápida, segura y confiable**, garantizando la protección de su información personal y bancaria.
+* **📈 Scalability and Performance**
+  Ability to monitor the system in real time and automatically scale resources during high-demand seasons.
 
 ---
 
-### Problema
+## 💼 Business Plan
 
-El método actual de reservación vía recepción es:
+### Executive Summary
 
-* ❌ Ineficiente
-* ❌ Lento
-* ❌ Vulnerable a riesgos de ciberseguridad
-
-Esto compromete datos personales, preferencias de hospedaje y datos bancarios, generando **desconfianza** tanto en clientes de alto perfil como en el cliente promedio.
+Nexus Hotel seeks to implement an innovative digital tool that replaces the traditional phone reservation process. The solution will allow existing and new clients to make reservations **quickly, securely, and reliably**, ensuring the protection of their personal and banking information.
 
 ---
 
-### Solución
+### Problem
 
-La **Propuesta de Valor** será desarrollará una **herramienta de reservaciones en línea** basada en la metodología **DevOps**, garantizando:
+The current reservation method via the front desk is:
 
-* **🔒 Seguridad y Confiabilidad**
-  Protección robusta de la información personal y bancaria del cliente.
+* ❌ Inefficient
+* ❌ Slow
+* ❌ Vulnerable to cybersecurity risks
 
-* **⚡ Eficiencia**
-  Proceso de reservación completamente digital y ágil.
-
-* **🌐 Disponibilidad**
-  Acceso al sistema en cualquier momento y desde cualquier lugar.
+This compromises personal data, accommodation preferences, and bank details, generating **distrust** among both high-profile and average clients.
 
 ---
 
-### Mercado Objetivo
+### Solution
 
-* **Clientes Actuales de Nexus Hotel**
-  Huéspedes frecuentes que buscan una experiencia moderna y segura.
+The **Value Proposition** will develop an **online reservation tool** based on the **DevOps** methodology, guaranteeing:
 
-* **Nuevos Clientes**
-  Usuarios atraídos por una plataforma que prioriza la seguridad, disponibilidad y facilidad de uso.
+* **🔒 Security and Reliability**
+  Robust protection of the client's personal and banking information.
 
----
+* **⚡ Efficiency**
+  Completely digital and agile reservation process.
 
-### Requerimientos Estratégicos
-
-Para el éxito del proyecto es indispensable garantizar:
-
-* 🔐 **Altos niveles de Seguridad**
-* ⏱️ **Alta Disponibilidad del Servicio**
-* ✅ **Confiabilidad en el manejo de datos y transacciones**
+* **🌐 Availability**
+  Access to the system anytime, anywhere.
 
 ---
 
-## Requerimientos Técnicos
+### Target Market
 
-| Tecnología          | Función                                                           |
-| ------------------- | ----------------------------------------------------------------- |
-| **React (Next.js)** | Desarrollo de la aplicación web de reservaciones                  |
-| **Vercel**          | Despliegue continuo y automatizado                                |
-| **Supabase**        | Base de datos y autenticación de usuarios                         |
-| **Terraform**       | Infraestructura como código para automatizar la provisión de entornos |
-| **Docker**          | Contenerización para entornos consistentes                        |
-| **Grafana**         | Monitoreo del rendimiento y estado del sistema                    |
+* **Current Nexus Hotel Clients**
+  Frequent guests looking for a modern and secure experience.
+
+* **New Clients**
+  Users attracted to a platform that prioritizes security, availability, and ease of use.
+
+---
+
+### Strategic Requirements
+
+For the project's success, it is essential to guarantee:
+
+* 🔐 **High levels of Security**
+* ⏱️ **High Service Availability**
+* ✅ **Reliability in data and transaction handling**
+
+---
+
+## Technical Requirements
+
+| Technology          | Function                                                           |
+| ------------------- | ------------------------------------------------------------------ |
+| **React (Next.js)** | Development of the reservation web application                     |
+| **Vercel**          | Continuous and automated deployment                                |
+| **Supabase**        | Database and user authentication                                   |
+| **Terraform**       | Infrastructure as code to automate environment provisioning        |
+| **Docker**          | Containerization for consistent environments                       |
+| **Grafana**         | System performance and health monitoring                           |
 
 
 ---
 
-## 🚀 Estado del Proyecto
+## 🚀 Project Status
 
-📍 **Fase 1 – Planeación y Diseño DevOps**
+📍 **Phase 1 – DevOps Planning and Design**
 
 ---
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto se desarrolla bajo un enfoque de **código abierto**, fomentando la colaboración y la mejora continua.
+This project is developed under an **open source** approach, fostering collaboration and continuous improvement.
 
-## Evidencias Fase 1
+## Phase 1 Evidence
 
-### 📊 Tablero Kanban (Jira)
+### 📊 Kanban Board (Jira)
 
 <img width="1482" height="950" alt="image" src="https://github.com/user-attachments/assets/a4d6b398-9354-4edf-89a9-7b06cde2814c" />
 
 
 <img width="1482" height="800" alt="image" src="https://github.com/user-attachments/assets/234df0ac-cc8c-46df-9692-599789d18666" />
 
-### Base de datos (SupaBase)
+### Database (SupaBase)
 
 <img width="1482" height="857" alt="image" src="https://github.com/user-attachments/assets/9872e972-8f9e-4e9c-b81f-df996578af7e" />
 
-### Plantilla
+### Template
 
 <img width="1482" height="818" alt="image" src="https://github.com/user-attachments/assets/86e05957-f844-4967-9b66-0371cec5e7f8" />
 
 
-# 📍 Fase 2 – Infraestructura utilizando Terraform
+# 📍 Phase 2 – Infrastructure using Terraform
 
 ---
 
-# 🐳 CI - Construcción de las Imágenes Docker
+# 🐳 CI - Docker Image Build
 
 ## ⚙️ Docker Setup
 
-Este proyecto está configurado con dos entornos Docker distintos para adaptarse a diferentes necesidades: desarrollo local y producción.
+This project is configured with two distinct Docker environments to suit different needs: local development and production.
 
 ---
 
-## 1️⃣ Entorno de Desarrollo (Web App)
+## 1️⃣ Development Environment (Web App)
 
-Diseñado para el desarrollo local con capacidades de hot-reloading. Ejecuta la aplicación frontend de Next.js.
+Designed for local development with hot-reloading capabilities. Runs the Next.js frontend application.
 
-**Objetivo:** Programar rápido ⚡  
-- **Archivo:** `Dockerfile.dev`  
-- **Puerto:** `3001`  
-- **Uso:** Solo desarrollo local  
+**Goal:** Code fast ⚡  
+- **File:** `Dockerfile.dev`  
+- **Port:** `3001`  
+- **Usage:** Local development only  
 
-### Características
+### Features
 
-- Hot-Reload: Los cambios en el código se reflejan al instante sin reiniciar.
-- Incluye herramientas de desarrollo y depuración.
-- Ideal para programación y pruebas rápidas.
+- Hot-Reload: Code changes are reflected instantly without restarting.
+- Includes development and debugging tools.
+- Ideal for coding and quick testing.
 
-### Comandos
+### Commands
 
 ```bash
-# Construir la imagen de desarrollo
+# Build the development image
 docker build -f Dockerfile.dev -t nexushotel .
 
-# Ejecutar el contenedor (con variables de entorno desde .env)
+# Run the container (with environment variables from .env)
 docker run -p 3001:3001 --env-file .env --name nexusdev nexushotel
 ```
 
-### Explicación de argumentos
+### Argument Explanation
 
-- `-p 3001:3001` → Mapea el puerto 3001 de tu máquina al puerto 3001 del contenedor.
-- `--env-file .env` → Carga las variables de entorno desde tu archivo `.env`.
-- `--name nexusdev` → Asigna un nombre al contenedor.
-
----
-
-## 2️⃣ Entorno de Producción (Web App)
-
-Diseñado para rendimiento y seguridad. Utiliza un proceso de construcción multi-stage para crear una imagen ligera y optimizada.
-
-**Objetivo:** Estabilidad y rendimiento 🚀  
-- **Archivo:** `Dockerfile`  
-- **Puerto:** `3000`  
-- **Uso:** Producción / despliegue en servidores reales  
-
-### Características
-
-- Imagen optimizada y ligera.
-- Elimina código fuente y herramientas innecesarias.
-- No expone configuraciones de desarrollo.
-- Arranque más rápido en producción.
+- `-p 3001:3001` → Maps port 3001 on your machine to port 3001 in the container.
+- `--env-file .env` → Loads environment variables from your `.env` file.
+- `--name nexusdev` → Assigns a name to the container.
 
 ---
 
-### 🔹 Opción A: Usar imagen pre-construida (Recomendado)
+## 2️⃣ Production Environment (Web App)
 
-Descarga la versión lista para usar desde Docker Hub.
+Designed for performance and security. Uses a multi-stage build process to create a lightweight and optimized image.
 
-**Imagen:** `ssubaru/nexushotel:latest`
+**Goal:** Stability and performance 🚀  
+- **File:** `Dockerfile`  
+- **Port:** `3000`  
+- **Usage:** Production / deployment on real servers  
+
+### Features
+
+- Optimized and lightweight image.
+- Removes source code and unnecessary tools.
+- Does not expose development configurations.
+- Faster startup in production.
+
+---
+
+### 🔹 Option A: Use pre-built image (Recommended)
+
+Download the ready-to-use version from Docker Hub.
+
+**Image:** `ssubaru/nexushotel:latest`
 
 ```bash
 docker run -p 3000:3000 --env-file .env --name nexusweb ssubaru/nexushotel:latest
@@ -222,63 +222,63 @@ docker run -p 3000:3000 --env-file .env --name nexusweb ssubaru/nexushotel:lates
 
 ---
 
-### 🔹 Opción B: Construir localmente
+### 🔹 Option B: Build locally
 
-Construye y ejecuta la aplicación usando Docker Compose.
+Build and run the application using Docker Compose.
 
 ```bash
 docker compose up --build -d
 ```
 
-Este proceso realiza automáticamente:
+This process automatically:
 
-- Aísla la aplicación web del monorepo.
-- Instala dependencias de producción.
-- Compila el proyecto Next.js.
-- Inicia el servidor usando una imagen ligera `node:22-slim`.
-
----
-# 🚀 CD - Despliegue en Kubernetes (Helm)
-
-Este proyecto utiliza **Helm** para gestionar el despliegue en Kubernetes de forma automatizada, reproducible y escalable como parte del proceso de Continuous Deployment (CD).
+- Isolates the web application from the monorepo.
+- Installs production dependencies.
+- Builds the Next.js project.
+- Starts the server using a lightweight `node:22-slim` image.
 
 ---
+# 🚀 CD - Kubernetes Deployment (Helm)
 
-## 📦 Estructura del Helm Chart
-
-El Helm Chart se encuentra en la carpeta `/helm` e incluye los siguientes recursos principales:
-
-- **Deployment:** Configura 3 réplicas de la aplicación para garantizar alta disponibilidad.
-- **Service:** Expone la aplicación internamente mediante un `ClusterIP`.
-- **Ingress:** Gestiona el acceso externo a la aplicación a través de un Ingress Controller.
-- **Namespace:** Define un espacio de nombres aislado llamado `nexushotel`.
+This project uses **Helm** to manage deployment on Kubernetes in an automated, reproducible, and scalable way as part of the Continuous Deployment (CD) process.
 
 ---
 
-## 🛠️ Comandos Útiles
+## 📦 Helm Chart Structure
 
-### 1️⃣ Validación Local
+The Helm Chart is located in the `/helm` folder and includes the following main resources:
 
-Antes de desplegar, se recomienda validar que el chart es correcto y funcional.
+- **Deployment:** Configures 3 replicas of the application to ensure high availability.
+- **Service:** Exposes the application internally using a `ClusterIP`.
+- **Ingress:** Manages external access to the application via an Ingress Controller.
+- **Namespace:** Defines an isolated namespace called `nexushotel`.
+
+---
+
+## 🛠️ Useful Commands
+
+### 1️⃣ Local Validation
+
+Before deploying, it is recommended to validate that the chart is correct and functional.
 
 ```bash
-# Validar la sintaxis del chart
+# Validate chart syntax
 helm lint ./helm
 
-# Previsualizar los manifiestos que se generarán
+# Preview the manifests that will be generated
 helm template nexushotel ./helm --set image.tag=latest
 ```
 
-Esto permite:
-- Detectar errores de configuración
-- Revisar los manifiestos Kubernetes antes del despliegue
-- Evitar fallos en el clúster
+This allows you to:
+- Detect configuration errors
+- Review Kubernetes manifests before deployment
+- Avoid cluster failures
 
 ---
 
-### 2️⃣ Despliegue Manual (Simulación de CD)
+### 2️⃣ Manual Deployment (CD Simulation)
 
-Para desplegar o actualizar la aplicación en el clúster actual (por ejemplo: Docker Desktop, Minikube o Kubernetes local):
+To deploy or update the application in the current cluster (e.g., Docker Desktop, Minikube, or local Kubernetes):
 
 ```bash
 helm upgrade --install nexushotel ./helm \
@@ -288,112 +288,112 @@ helm upgrade --install nexushotel ./helm \
   --wait
 ```
 
-Este comando:
-- Instala el chart si no existe
-- Actualiza el despliegue si ya está instalado
-- Crea automáticamente el namespace `nexushotel`
-- Espera hasta que los recursos estén completamente listos
+This command:
+- Installs the chart if it doesn't exist
+- Updates the deployment if already installed
+- Automatically creates the `nexushotel` namespace
+- Waits until the resources are fully ready
 
 ---
 
-### 3️⃣ Gestión y Verificación con Kubectl
+### 3️⃣ Management and Verification with Kubectl
 
-Comandos esenciales para monitorear el estado del despliegue en Kubernetes:
+Essential commands to monitor the deployment status in Kubernetes:
 
 ```bash
-# Ver todos los recursos (pods, services, deployments)
+# View all resources (pods, services, deployments)
 kubectl get all -n nexushotel
 
-# Ver logs de la aplicación
+# View application logs
 kubectl logs -n nexushotel -l app=nexushotel-web
 
-# Exponer la aplicación en localhost (útil para Docker Desktop/Minikube)
+# Expose the application on localhost (useful for Docker Desktop/Minikube)
 kubectl patch svc nexushotel-svc -n nexushotel -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-Estos comandos permiten:
-- Supervisar pods y servicios activos
-- Depurar errores mediante logs
-- Probar el acceso local a la aplicación
+These commands allow you to:
+- Monitor active pods and services
+- Debug errors via logs
+- Test local access to the application
 
 ---
 
-### 4️⃣ Automatización con GitHub Actions (CD)
+### 4️⃣ Automation with GitHub Actions (CD)
 
-El flujo de Continuous Deployment está configurado en:
+The Continuous Deployment flow is configured in:
 
 ```
 .github/workflows/cd.yml
 ```
 
-Este pipeline se ejecuta automáticamente cuando:
-- Se hace merge de un Pull Request
-- A la rama `main` o `master`
+This pipeline runs automatically when:
+- A Pull Request is merged
+- To the `main` or `master` branch
 
-Durante el flujo de CD:
-- Se obtiene la nueva imagen Docker del registry
-- Se actualiza el chart de Helm
-- Se despliega automáticamente en el clúster de Kubernetes
-
----
-
-## 🔐 Requisitos de Configuración
-
-Para permitir el despliegue automático en el clúster remoto, es necesario configurar el siguiente secreto en GitHub:
-
-- **Secret requerido:** `KUBECONFIG`
-- Ubicación: Settings → Secrets and variables → Actions (del repositorio)
-
-Este secreto contiene las credenciales del clúster Kubernetes y permite que GitHub Actions realice el despliegue de forma segura.
+During the CD flow:
+- The new Docker image is fetched from the registry
+- The Helm chart is updated
+- It automatically deploys to the Kubernetes cluster
 
 ---
 
-> ⚠️ Importante:  
-> El uso de Helm en el proceso de CD garantiza despliegues consistentes, escalables y automatizados, alineados con las mejores prácticas modernas de DevOps y Kubernetes
+## 🔐 Configuration Requirements
 
-# 🌍 Construcción de Infraestructura con Terraform
+To allow automatic deployment to the remote cluster, the following secret must be configured in GitHub:
 
-En **Nexus Hotel**, usamos Terraform para automatizar la creación y gestión de infraestructura en la nube.
+- **Required secret:** `KUBECONFIG`
+- Location: Settings → Secrets and variables → Actions (of the repository)
 
-## 🎯 ¿Qué hace Terraform en el proyecto?
+This secret contains the Kubernetes cluster credentials and allows GitHub Actions to perform the deployment securely.
 
-- Automatiza la creación de proyectos en Vercel:
+---
+
+> ⚠️ Important:  
+> The use of Helm in the CD process ensures consistent, scalable, and automated deployments, aligned with modern DevOps and Kubernetes best practices.
+
+# 🌍 Infrastructure Build with Terraform
+
+At **Nexus Hotel**, we use Terraform to automate the creation and management of cloud infrastructure.
+
+## 🎯 What does Terraform do in the project?
+
+- Automates the creation of projects in Vercel:
   - `hotel-project-web`
   - `hotel-project-api`
-- Sincroniza automáticamente las variables de entorno (Supabase).
-- Garantiza que el Frontend y el API apunten a la misma base de datos.
-- Mantiene consistencia entre entornos.
-- Versiona la infraestructura como código (IaC).
+- Automatically synchronizes environment variables (Supabase).
+- Ensures that the Frontend and API point to the same database.
+- Maintains consistency between environments.
+- Versions infrastructure as code (IaC).
 
 ---
 
-## 📂 Uso de Terraform
+## 📂 Terraform Usage
 
-Todos los comandos deben ejecutarse dentro de la carpeta `/terraform`.
+All commands must be executed within the `/terraform` folder.
 
 ```bash
 cd terraform
 ```
 
-### Comandos básicos
+### Basic commands
 
 ```bash
-# Inicializa los plugins necesarios
+# Initializes required plugins
 terraform init
 
-# Muestra los cambios antes de aplicarlos
+# Shows changes before applying them
 terraform plan
 
-# Aplica los cambios y crea la infraestructura real
+# Applies changes and creates real infrastructure
 terraform apply
 ```
 
 ---
 
-> ⚠️ **Importante**  
-> Gracias a Terraform, nuestra infraestructura es resistente, escalable y transparente, cumpliendo con los estándares modernos de DevOps y CI/CD requeridos por el proyecto.
+> ⚠️ **Important**  
+> Thanks to Terraform, our infrastructure is resilient, scalable, and transparent, meeting the modern DevOps and CI/CD standards required by the project.
 
-## Evidencias Fase 2
+## Phase 2 Evidence
 
 ### Docker Image
 <img width="1600" height="859" alt="image" src="https://github.com/user-attachments/assets/f9c3cf2a-a03f-4d23-b6eb-e1c0e0f60137" />
