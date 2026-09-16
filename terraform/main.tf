@@ -11,8 +11,8 @@ resource "vercel_project" "web" {
   root_directory = "apps/web"
 
   # Manual configuration overrides
-  install_command = "pnpm install --prefix=../.."
-  build_command   = "npx turbo run build --filter=web"
+  install_command = "cd ../.. && pnpm install"
+  build_command   = "cd ../.. && npx turbo run build --filter=web"
 }
 
 resource "vercel_project_environment_variable" "web_url" {
@@ -43,7 +43,7 @@ resource "vercel_project" "api" {
   root_directory = "apps/api"
 
   # Manual configuration overrides
-  install_command  = "pnpm install --prefix=../.."
+  install_command  = "cd ../.. && pnpm install"
   build_command    = "cd ../.. && npx turbo run build --filter=api"
   output_directory = "dist"
 }
